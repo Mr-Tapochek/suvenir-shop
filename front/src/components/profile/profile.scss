@@ -1,0 +1,473 @@
+.souvenir-profile {
+    max-width: 2560px;
+    margin: 30px auto 60px;
+    padding: 0 30px;
+    padding-bottom: 5px;
+    background-color: #fdfaf7;
+    border-radius: 60px 60px 0 0;
+
+    &__banner {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        border-radius: 30px;
+        overflow: hidden;
+        margin-bottom: 80px;
+        box-shadow: 0 20px 30px -15px rgba(249, 115, 22, 0.3);
+        border: 2px dashed #ffd8c4;
+    }
+
+    &__banner-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+
+    &__banner-placeholder {
+        width: 100%;
+        height: 100%;
+        background: #ffe4d6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #f97316;
+        font-style: italic;
+        position: relative;
+
+        &::before {
+            content: '🖼️';
+            font-size: 3rem;
+            margin-right: 15px;
+            opacity: 0.5;
+        }
+    }
+
+    &__edit-btn {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: #ffffff;
+        border: 2px solid #f97316;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px -5px #f97316;
+
+        &:hover {
+            transform: scale(1.1) rotate(10deg);
+            background: #f97316;
+            color: white;
+            border-color: white;
+        }
+
+        &--banner {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        &--avatar {
+            bottom: 10px;
+            right: 10px;
+        }
+    }
+
+    &__avatar-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    &__avatar-wrapper {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        margin-top: -90px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        border: 4px solid #ffffff;
+        box-shadow: 0 10px 25px -8px #f97316;
+        background: #ffffff;
+        overflow: hidden;
+    }
+
+    &__avatar-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    &__avatar-placeholder {
+        width: 100%;
+        height: 100%;
+        background: #ffe4d6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f97316;
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 20px;
+    }
+
+    &__nickname {
+        font-family: 'Segoe UI', serif;
+        font-size: 2.5rem;
+        font-weight: 400;
+        color: #4a3b30;
+        margin: 0;
+        position: relative;
+        padding: 0 30px;
+
+        &::before {
+            left: 0;
+        }
+
+        &::after {
+            right: 0;
+        }
+    }
+
+    &__bio {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 50px;
+        border: 2px dashed #ffd8c4;
+        box-shadow: 0 15px 30px -15px rgba(249, 115, 22, 0.2);
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #f97316;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__bio-text {
+        font-size: 1.2rem;
+            line-height: 1.6;
+        color: #4a3b30;
+        margin: 0;
+        padding: 15px;
+        background: #ffffff;
+        border-radius: 40px;
+        border: 1px solid #ffe4d6;
+    }
+
+    &__textarea {
+        width: 100%;
+        padding: 20px;
+        font-family: inherit;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        color: #4a3b30;
+        background: #ffffff;
+        border: 2px solid #ffd8c4;
+        border-radius: 40px;
+        resize: vertical;
+        transition: all 0.3s ease;
+
+        &:focus {
+            outline: none;
+            border-color: #f97316;
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+        }
+
+        &::placeholder {
+            color: #c7b5a6;
+            font-style: italic;
+        }
+    }
+
+    &__controls {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    &__edit-profile-btn {
+        background: #fb923c;
+        color: white;
+        border: none;
+        padding: 18px 50px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        border-radius: 60px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 15px 25px -12px #f97316;
+        border: 2px solid transparent;
+
+        &:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 25px 35px -15px #f97316;
+            border-color: white;
+        }
+
+        &:active {
+            transform: translateY(-1px);
+        }
+    }
+
+    &__edit-controls {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__apply-btn {
+        background: #45a049;
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px -8px #4CAF50;
+        min-width: 150px;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -10px #4CAF50;
+        }
+    }
+
+    &__cancel-btn {
+        background: white;
+        color: #f95f15;
+        border: 2px solid #f95f15;
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 150px;
+
+        &:hover {
+            background: #fff1e6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -8px #f95f15;
+        }
+    }
+
+    &__files-info {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff9f5;
+        border-radius: 40px;
+        border: 2px dashed #ffb08e;
+        text-align: center;
+
+        p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #4a3b30;
+            padding: 8px 15px;
+            background: white;
+            border-radius: 30px;
+            display: inline-block;
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .souvenir-profile {
+        padding: 0 15px;
+        margin: 15px auto 30px;
+        border-radius: 30px 30px 0 0;
+
+        &__banner {
+            height: 150px;
+            border-radius: 30px 30px 20px 20px;
+            margin-bottom: 60px;
+        }
+
+        &__banner-placeholder {
+            font-size: 1rem;
+
+            &::before {
+                font-size: 2rem;
+            }
+        }
+
+        &__edit-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+        }
+
+        &__avatar-wrapper {
+            width: 120px;
+            height: 120px;
+            margin-top: -60px;
+        }
+
+        &__nickname {
+            font-size: 1.8rem;
+            padding: 0 20px;
+
+            &::before,
+            &::after {
+                font-size: 1rem;
+            }
+        }
+
+        &__bio {
+            padding: 20px;
+
+            h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        &__bio-text {
+            font-size: 1rem;
+            padding: 12px;
+        }
+
+        &__textarea {
+            padding: 15px;
+            font-size: 1rem;
+        }
+
+        &__edit-profile-btn {
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+
+        &__edit-controls {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        &__apply-btn,
+        &__cancel-btn {
+            width: 100%;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+        }
+
+        &__files-info {
+            padding: 15px;
+
+            p {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+    }
+}
+
+@media (min-width: 376px) and (max-width: 960px) {
+    .souvenir-profile {
+        &__banner {
+            height: 200px;
+        }
+
+        &__avatar-wrapper {
+            width: 150px;
+            height: 150px;
+            margin-top: -75px;
+        }
+
+        &__nickname {
+            font-size: 2.2rem;
+        }
+
+        &__bio {
+            max-width: 90%;
+        }
+
+        &__edit-controls {
+            gap: 15px;
+        }
+
+        &__apply-btn,
+        &__cancel-btn {
+            min-width: 130px;
+            padding: 12px 25px;
+        }
+    }
+}
+
+@media (min-width: 961px) and (max-width: 1200px) {
+    .souvenir-profile {
+        &__banner {
+            height: 250px;
+        }
+
+        &__bio {
+            max-width: 550px;
+        }
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1920px) {
+    .souvenir-profile {
+        &__banner {
+            height: 350px;
+        }
+    }
+}
+
+@media (min-width: 1921px) {
+    .souvenir-profile {
+        &__banner {
+            height: 450px;
+        }
+
+        &__avatar-wrapper {
+            width: 220px;
+            height: 220px;
+            margin-top: -110px;
+        }
+
+        &__nickname {
+            font-size: 3rem;
+        }
+
+        &__bio {
+            max-width: 800px;
+            padding: 40px;
+
+            h3 {
+                font-size: 2rem;
+            }
+        }
+
+        &__bio-text {
+            font-size: 1.4rem;
+        }
+
+        &__edit-profile-btn {
+            padding: 22px 70px;
+            font-size: 1.6rem;
+        }
+    }
+}

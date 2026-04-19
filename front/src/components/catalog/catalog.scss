@@ -1,0 +1,336 @@
+.souvenir-catalog {
+    background-color: #fdfaf7;
+    padding: 40px 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 35px;
+    max-width: 2560px;
+    margin: 0 auto;
+    border-radius: 60px 60px 0 0;
+}
+
+.souvenir-card {
+    background-color: #ffffff;
+    border-radius: 40px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 218, 185, 0.3);
+    box-shadow: 0 10px 25px -10px rgba(251, 146, 60, 0.2);
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease forwards;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 35px -12px #fb923c;
+        border-color: #fed7aa;
+    }
+}
+
+.souvenir-card__image-wrapper {
+    padding: 25px 25px 12px 25px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px dashed #ffe4d6;
+
+    img {
+        width: 100%;
+        height: 240px;
+        object-fit: contain;
+        transition: transform 0.4s ease;
+        filter: drop-shadow(0 6px 10px rgba(249, 115, 22, 0.15));
+
+        .souvenir-card:hover & {
+            transform: scale(1.05) rotate(1deg);
+        }
+    }
+}
+
+.souvenir-card__info {
+    padding: 25px 25px 30px 25px;
+    background-color: #ffffff;
+    border-radius: 0 0 40px 40px;
+    text-align: center;
+}
+
+.souvenir-card__title {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #4a3b30;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+}
+
+.souvenir-card__prices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.souvenir-card__old-price {
+    color: #c7b5a6;
+    font-size: 1.1rem;
+
+    strike {
+        text-decoration-color: #f97316;
+        text-decoration-thickness: 2px;
+    }
+}
+
+.souvenir-card__new-price {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    background: #fb923c;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
+    line-height: 1;
+}
+
+.souvenir-pagination {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 60px;
+    padding-top: 25px;
+    border-top: 2px dotted #ffd8c4;
+}
+
+.souvenir-pagination__button {
+    background: white;
+    border: 2px solid #ffb08e;
+    color: #f95f15;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 14px 35px;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 12px -8px #f95f15;
+    min-width: 150px;
+
+    &:hover:not(:disabled) {
+        background: #f95f15;
+        color: white;
+        border-color: #f95f15;
+        transform: scale(1.03);
+        box-shadow: 0 12px 18px -8px #f95f15;
+    }
+
+    &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        border-color: #ccc;
+        color: #999;
+        box-shadow: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@for $i from 1 through 20 {
+    .souvenir-card:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+    }
+}
+
+@media (max-width: 375px) {
+    .souvenir-catalog {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+        border-radius: 24px 24px 0 0;
+    }
+
+    .souvenir-card {
+        border-radius: 24px;
+        flex-direction: row;
+        align-items: center;
+        animation: fadeInUp 0.4s ease forwards;
+
+        &:hover {
+            transform: translateY(-4px);
+        }
+    }
+
+    .souvenir-card__image-wrapper {
+        width: 120px;
+        padding: 15px;
+        border-bottom: none;
+        border-right: 2px dashed #ffe4d6;
+
+        img {
+            height: 100px;
+
+            .souvenir-card:hover & {
+                transform: scale(1.03) rotate(0.5deg);
+            }
+        }
+    }
+
+    .souvenir-card__info {
+        flex: 1;
+        padding: 15px;
+        text-align: left;
+        border-radius: 0 24px 24px 0;
+    }
+
+    .souvenir-card__title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .souvenir-card__prices {
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .souvenir-card__old-price {
+        font-size: 0.95rem;
+    }
+
+    .souvenir-card__new-price {
+        font-size: 1.4rem;
+    }
+
+    .souvenir-pagination {
+        gap: 12px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .souvenir-pagination__button {
+        padding: 12px 20px;
+        font-size: 1rem;
+        flex: 1;
+        min-width: auto;
+
+        &:hover:not(:disabled) {
+            transform: scale(1.02);
+        }
+
+        &:first-child {
+            order: 1;
+        }
+
+        &:last-child {
+            order: 2;
+        }
+    }
+}
+
+@media (min-width: 376px) and (max-width: 960px) {
+    .souvenir-catalog {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+        border-radius: 40px 40px 0 0;
+    }
+
+    .souvenir-card {
+        border-radius: 28px;
+    }
+
+    .souvenir-card__image-wrapper {
+        padding: 20px 20px 10px 20px;
+
+        img {
+            height: 180px;
+        }
+    }
+
+    .souvenir-card__info {
+        padding: 20px 20px 25px 20px;
+    }
+
+    .souvenir-card__title {
+        font-size: 1.2rem;
+    }
+
+    .souvenir-card__new-price {
+        font-size: 1.6rem;
+    }
+
+    .souvenir-pagination__button {
+        padding: 12px 28px;
+    }
+}
+
+@media (min-width: 961px) and (max-width: 1200px) {
+    .souvenir-catalog {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        padding: 25px;
+    }
+
+    .souvenir-card__image-wrapper img {
+        height: 200px;
+    }
+
+    .souvenir-card__title {
+        font-size: 1.2rem;
+    }
+
+    .souvenir-card__new-price {
+        font-size: 1.8rem;
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1920px) {
+    .souvenir-catalog {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .souvenir-card__image-wrapper img {
+        height: 220px;
+    }
+
+    .souvenir-card__new-price {
+        font-size: 1.9rem;
+    }
+}
+
+@media (min-width: 1921px) {
+    .souvenir-catalog {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 35px;
+        padding: 40px;
+    }
+
+    .souvenir-card__image-wrapper img {
+        height: 280px;
+    }
+
+    .souvenir-card__title {
+        font-size: 1.4rem;
+    }
+
+    .souvenir-card__new-price {
+        font-size: 2.2rem;
+    }
+
+    .souvenir-pagination__button {
+        padding: 16px 45px;
+        font-size: 1.3rem;
+    }
+}

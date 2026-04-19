@@ -1,0 +1,346 @@
+.souvenir-about {
+    max-width: 2560px;
+    margin: 0 auto;
+    background-color: #fdfaf7;
+    padding: 60px 30px;
+    border-radius: 30px;
+
+    &__title {
+        font-family: 'Segoe UI', serif;
+        font-size: 3.5rem;
+        font-weight: 400;
+        color: #4a3b30;
+        text-align: center;
+        margin: 0 0 40px 0;
+        position: relative;
+        letter-spacing: 2px;
+    }
+
+    &__intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 80px auto;
+        padding: 40px 50px;
+        background: #fff9f5;
+        border-radius: 30px;
+        box-shadow: 0 20px 40px -20px rgba(249, 115, 22, 0.3);
+        border: 2px dashed #ffd8c4;
+
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: #4a3b30;
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #6b5a4c;
+            margin: 0;
+        }
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-bottom: 100px;
+    }
+
+    &__card {
+        background: #ffffff;
+        border-radius: 60px 60px 40px 40px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px -12px rgba(249, 115, 22, 0.2);
+        transition: all 0.4s ease;
+        border: 1px solid rgba(255, 218, 185, 0.5);
+        display: flex;
+        flex-direction: column;
+
+        &:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 40px -15px #fb923c;
+            border-color: #fed7aa;
+
+            .souvenir-about__card-image img {
+                transform: scale(1.1) rotate(2deg);
+            }
+        }
+    }
+
+    &__card-image {
+        padding: 40px 40px 20px 40px;
+        background: #fff1e6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px dashed #ffe4d6;
+
+        img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            filter: drop-shadow(0 8px 15px rgba(249, 115, 22, 0.2));
+        }
+    }
+
+    &__card-content {
+        padding: 30px 30px 40px 30px;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #f97316;
+            margin: 0 0 15px 0;
+            position: relative;
+            display: inline-block;
+            align-self: center;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 60px;
+                height: 2px;
+                background: #f97316;
+                margin: 10px auto 0;
+                opacity: 0.5;
+            }
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #6b5a4c;
+            margin: 0;
+        }
+    }
+
+    &__contacts {
+        background: #fff9f5;
+        border-radius: 80px;
+        padding: 60px 50px;
+        border: 2px dashed #ffd8c4;
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: #4a3b30;
+            text-align: center;
+            margin: 0 0 50px 0;
+            position: relative;
+        }
+    }
+
+    &__contacts-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    &__contact-item {
+        text-align: center;
+        padding: 30px 20px;
+        background: #ffffff;
+        border-radius: 50px;
+        box-shadow: 0 10px 25px -10px rgba(249, 115, 22, 0.2);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 218, 185, 0.5);
+
+        &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 30px -12px #fb923c;
+            border-color: #fed7aa;
+        }
+
+        .contact-info {
+            h4 {
+                font-size: 1.4rem;
+                font-weight: 500;
+                color: #f97316;
+                margin: 0 0 20px 0;
+            }
+
+            p {
+                font-size: 1.1rem;
+                line-height: 1.5;
+                color: #4a3b30;
+                margin: 10px 0;
+
+                &:first-of-type {
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .souvenir-about {
+        padding: 30px 15px;
+        border-radius: 30px 30px 0 0;
+
+        &__title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+
+            &::after {
+                font-size: 1.5rem;
+                margin-top: 10px;
+            }
+        }
+
+        &__intro {
+            padding: 25px 20px;
+            margin-bottom: 40px;
+            border-radius: 60px 60px 30px 30px;
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        &__cards {
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        &__card {
+            border-radius: 40px 40px 30px 30px;
+        }
+
+        &__card-image {
+            padding: 25px 25px 15px 25px;
+
+            img {
+                height: 160px;
+            }
+        }
+
+        &__card-content {
+            padding: 20px 20px 30px 20px;
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        &__contacts {
+            padding: 30px 20px;
+            border-radius: 40px;
+
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+
+                &::after {
+                    font-size: 1.5rem;
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        &__contacts-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        &__contact-item {
+            padding: 20px 15px;
+            border-radius: 30px;
+
+            .contact-info {
+                h4 {
+                    font-size: 1.2rem;
+                    margin-bottom: 15px;
+                }
+
+                p {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 376px) and (max-width: 960px) {
+    .souvenir-about {
+        padding: 40px 20px;
+
+        &__title {
+            font-size: 2.8rem;
+        }
+
+        &__intro {
+            padding: 30px;
+            margin-bottom: 50px;
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+        }
+
+        &__cards {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        &__card-image img {
+            height: 180px;
+        }
+
+        &__card-content {
+            padding: 25px 20px 30px 20px;
+
+            h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        &__contacts {
+            padding: 40px 30px;
+        }
+
+        &__contacts-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+    }
+}
+
+@media (min-width: 961px) and (max-width: 1200px) {
+    .souvenir-about {
+        &__cards {
+            gap: 30px;
+        }
+
+        &__card-image img {
+            height: 200px;
+        }
+
+        &__card-content {
+            h3 {
+                font-size: 1.7rem;
+            }
+        }
+    }
+}

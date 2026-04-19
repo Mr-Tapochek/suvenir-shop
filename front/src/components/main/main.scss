@@ -1,0 +1,327 @@
+.souvenir-hero {
+    max-width: 2560px;
+    margin: 20px auto 0;
+    padding: 0 20px;
+
+    &__background {
+        position: relative;
+        width: 100%;
+        min-height: 600px;
+        background-image: url('./static/bgimg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 80px;
+        overflow: hidden;
+        box-shadow: 0 30px 40px -20px rgba(249, 115, 22, 0.3);
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(253, 250, 247, 0.9) 0%,
+            rgba(255, 241, 230, 0.85) 50%,
+            rgba(255, 232, 219, 0.9) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    &__content {
+        max-width: 800px;
+        text-align: center;
+        color: #4a3b30;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    &__title {
+        font-family: 'Segoe UI', serif;
+        font-size: 4rem;
+        font-weight: 400;
+        line-height: 1.2;
+        margin: 0 0 20px 0;
+        text-shadow: 2px 2px 4px rgba(249, 115, 22, 0.1);
+
+        span {
+            font-size: 2.5rem;
+            display: block;
+            color: #f97316;
+            margin-top: 10px;
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+        }
+    }
+
+    &__subtitle {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        margin: 0 0 40px 0;
+        color: #6b5a4c;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 20px 30px;
+        border-radius: 60px;
+        backdrop-filter: blur(5px);
+        border: 2px dashed #ffd8c4;
+    }
+
+    &__button {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #ffffff;
+        background: #fb923c;
+        padding: 18px 50px;
+        border-radius: 60px;
+        box-shadow: 0 15px 30px -10px #f97316;
+        transition: all 0.3s ease;
+        border: 2px solid #ffffff;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '🎁';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        &::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        &:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 40px -12px #f97316;
+            padding: 18px 70px;
+
+            &::before {
+                left: 25px;
+                opacity: 1;
+            }
+
+            &::after {
+                right: 25px;
+                opacity: 1;
+            }
+        }
+
+        &:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes floatSouvenir {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    75% {
+        transform: translateY(10px) rotate(-2deg);
+    }
+}
+
+@media (max-width: 375px) {
+    .souvenir-hero {
+        margin: 10px auto 0;
+        padding: 0 10px;
+
+        &__background {
+            min-height: 500px;
+            border-radius: 40px;
+        }
+
+        &__overlay {
+            padding: 20px;
+        }
+
+        &__title {
+            font-size: 2.2rem;
+
+            span {
+                font-size: 1.4rem;
+
+                &::before,
+                &::after {
+                    font-size: 1rem;
+                    margin: 0 8px;
+                }
+            }
+        }
+
+        &__subtitle {
+            font-size: 1rem;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+        }
+
+        &__button {
+            font-size: 1.1rem;
+            padding: 14px 30px;
+
+            &:hover {
+                padding: 14px 45px;
+            }
+
+            &::before,
+            &::after {
+                font-size: 1.2rem;
+            }
+        }
+
+        &__background {
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: 376px) and (max-width: 960px) {
+    .souvenir-hero {
+        &__background {
+            min-height: 550px;
+            border-radius: 60px;
+        }
+
+        &__title {
+            font-size: 3rem;
+
+            span {
+                font-size: 2rem;
+            }
+        }
+
+        &__subtitle {
+            font-size: 1.2rem;
+            padding: 18px 25px;
+        }
+
+        &__button {
+            font-size: 1.3rem;
+            padding: 16px 40px;
+        }
+
+        &__background {
+            &::before {
+                font-size: 4rem;
+                left: 2%;
+            }
+
+            &::after {
+                font-size: 3.5rem;
+                right: 2%;
+            }
+        }
+    }
+}
+
+@media (min-width: 961px) and (max-width: 1200px) {
+    .souvenir-hero {
+        &__title {
+            font-size: 3.5rem;
+
+            span {
+                font-size: 2.2rem;
+            }
+        }
+
+        &__background {
+            &::before {
+                font-size: 5rem;
+            }
+
+            &::after {
+                font-size: 4rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1920px) {
+    .souvenir-hero {
+        &__background {
+            min-height: 700px;
+        }
+
+        &__title {
+            font-size: 4.5rem;
+
+            span {
+                font-size: 2.8rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 1921px) {
+    .souvenir-hero {
+        &__background {
+            min-height: 900px;
+            border-radius: 100px;
+        }
+
+        &__title {
+            font-size: 5.5rem;
+
+            span {
+                font-size: 3.5rem;
+            }
+        }
+
+        &__subtitle {
+            font-size: 1.6rem;
+            max-width: 1000px;
+        }
+
+        &__button {
+            font-size: 1.8rem;
+            padding: 22px 70px;
+        }
+    }
+}
