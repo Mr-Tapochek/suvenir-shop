@@ -13,6 +13,7 @@ const Header = () => {
             <section className="links souvenir-header__nav">
                 <Link to='catalog/' className="header-link souvenir-header__link">Каталог</Link>
                 <Link to='about/' className="header-link souvenir-header__link">О нас</Link>
+                <Link to='cart/' className="header-link souvenir-header__link">Корзина</Link>
                 <Link to='profile/' className="header-link souvenir-header__link">Профиль</Link>
             </section>
         </header>
