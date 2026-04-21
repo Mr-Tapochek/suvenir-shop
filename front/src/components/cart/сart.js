@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './cart.scss'
 
 const Cart = () => {
     const [cart, setCart] = useState(null);
     const [updatingItems, setUpdatingItems] = useState({});
+    const navigate = useNavigate();
 
     const fetchCart = async () => {
     const token = localStorage.getItem('access_token');
@@ -177,7 +178,7 @@ const Cart = () => {
                     <Link to="/catalog" className="souvenir-cart__continue-link">
                         Продолжить покупки
                     </Link>
-                    <button className="souvenir-cart__checkout-btn">
+                    <button onClick={() => navigate('/checkout')} className="souvenir-cart__checkout-btn">
                         Оформить заказ
                     </button>
                 </div>

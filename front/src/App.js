@@ -11,6 +11,7 @@ import Header from './components/header/Header';
 import About from './components/about/about';
 import Main from './components/main/main';
 import Cart from './components/cart/сart';
+import Checkout from './components/checkout/Checkout';
 function App() {
   return (
       <Router>
@@ -28,6 +29,7 @@ function AppContent() {
     <>
       {shouldShowHeader && <Header />}
       <Routes>
+        <Route path='/checkout' element={<Checkout />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/main' element={<Main />} />
         <Route path='/about' element={<About />} />

@@ -61,3 +61,47 @@ class CartItem(models.Model):
     def total_price(self):
         price = self.product.sale_price if self.product.sale_price > 0 else self.product.out_price
         return price * self.quantity
+
+class Order(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Ожидает обработки'),
+        ('processing', 'В обработке'),
+        ('shipped', 'Отправлен'),
+        ('delivered', 'Доставлен'),
+        ('cancelled', 'Отменен'),
+    ]
+    PAYMENT_CHOICES = [
+        ('cash', 'Наличными курьеру'),
+        ('card', 'Банковской картой'),
+    ]
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='orders', verbose_name='Пользователь')
+    address = models.TextField(verbose_name='Адрес доставки')
+    delivery_date = models.DateField(null=True, verbose_name='Дата доставки')
+    delivery_time = models.CharField(max_length=100, verbose_name='Время доставки')
+    payment_method = models.CharField(max_length=10, choices=PAYMENT_CHOICES, verbose_name='Способ оплаты')
+    card_number = models.CharField(max_length=19, blank=True, null=True, verbose_name='Номер карты')
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Общая сумма')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name='Статус заказа')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    class Meta:
+        db_table = 'order'
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+    def __str__(self):
+        return f"Заказ #{self.id} - {self.user.username}"
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items', verbose_name='Заказ')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Товар')
+    quantity = models.PositiveIntegerField(verbose_name='Количество')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена на момент заказа')
+    class Meta:
+        db_table = 'order_item'
+        verbose_name = 'Товар в заказе'
+        verbose_name_plural = 'Товары в заказе'
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} в заказе #{self.order.id}"
+    @property
+    def total_price(self):
+        return self.price * self.quantity
