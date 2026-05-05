@@ -235,7 +235,7 @@ const RegistrationForm = () => {
             </form>
 
             <div className="login-link">
-                <Link to='/login'>Уже регистрировались?</Link>
+                <Link to='/'>Уже регистрировались?</Link>
             </div>
         </div>
     );

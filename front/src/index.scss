@@ -1,0 +1,31 @@
+@import './components/variables.scss';
+
+body {
+  margin: 0;
+  font-family: 'Gatchina', 'Gatchina Bold';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'monospace';
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: $gray-bg;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: $gray-bg;
+}

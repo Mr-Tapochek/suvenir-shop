@@ -1,15 +1,16 @@
+@import '../variables';
+
 .souvenir-about {
-    max-width: 2560px;
+    max-width: 1920px;
     margin: 0 auto;
-    background-color: #fdfaf7;
+    background-color: $gray-bg;
     padding: 60px 30px;
-    border-radius: 30px;
+    border-radius: 60px;
 
     &__title {
-        font-family: 'Segoe UI', serif;
         font-size: 3.5rem;
         font-weight: 400;
-        color: #4a3b30;
+        color: $text-dark;
         text-align: center;
         margin: 0 0 40px 0;
         position: relative;
@@ -21,15 +22,15 @@
         max-width: 800px;
         margin: 0 auto 80px auto;
         padding: 40px 50px;
-        background: #fff9f5;
-        border-radius: 30px;
-        box-shadow: 0 20px 40px -20px rgba(249, 115, 22, 0.3);
-        border: 2px dashed #ffd8c4;
+        background: $white;
+        border-radius: 50px;
+        box-shadow: 0 20px 40px -20px rgba($primary, 0.15);
+        border: 2px dashed $gray-light;
 
         h2 {
             font-size: 2.2rem;
             font-weight: 500;
-            color: #4a3b30;
+            color: $text-dark;
             margin: 0 0 20px 0;
             line-height: 1.3;
         }
@@ -37,7 +38,7 @@
         p {
             font-size: 1.2rem;
             line-height: 1.6;
-            color: #6b5a4c;
+            color: $text-medium;
             margin: 0;
         }
     }
@@ -50,40 +51,40 @@
     }
 
     &__card {
-        background: #ffffff;
-        border-radius: 60px 60px 40px 40px;
+        background: $white;
+        border-radius: 50px 50px 40px 40px;
         overflow: hidden;
-        box-shadow: 0 15px 30px -12px rgba(249, 115, 22, 0.2);
+        box-shadow: 0 15px 30px -12px rgba($primary, 0.15);
         transition: all 0.4s ease;
-        border: 1px solid rgba(255, 218, 185, 0.5);
+        border: 1px solid rgba($primary, 0.1);
         display: flex;
         flex-direction: column;
 
         &:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 30px 40px -15px #fb923c;
-            border-color: #fed7aa;
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -15px rgba($primary, 0.25);
+            border-color: $primary-light;
 
             .souvenir-about__card-image img {
-                transform: scale(1.1) rotate(2deg);
+                transform: scale(1.05);
             }
         }
     }
 
     &__card-image {
         padding: 40px 40px 20px 40px;
-        background: #fff1e6;
+        background: $gray-bg;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-bottom: 2px dashed #ffe4d6;
+        border-bottom: 2px dashed $gray-light;
 
         img {
             width: 100%;
             height: 220px;
             object-fit: contain;
             transition: transform 0.5s ease;
-            filter: drop-shadow(0 8px 15px rgba(249, 115, 22, 0.2));
+            filter: drop-shadow(0 8px 15px rgba($primary, 0.1));
         }
     }
 
@@ -97,7 +98,7 @@
         h3 {
             font-size: 1.8rem;
             font-weight: 500;
-            color: #f97316;
+            color: $primary;
             margin: 0 0 15px 0;
             position: relative;
             display: inline-block;
@@ -108,7 +109,7 @@
                 display: block;
                 width: 60px;
                 height: 2px;
-                background: #f97316;
+                background: $primary;
                 margin: 10px auto 0;
                 opacity: 0.5;
             }
@@ -117,21 +118,21 @@
         p {
             font-size: 1.1rem;
             line-height: 1.6;
-            color: #6b5a4c;
+            color: $text-medium;
             margin: 0;
         }
     }
 
     &__contacts {
-        background: #fff9f5;
-        border-radius: 80px;
+        background: $white;
+        border-radius: 60px;
         padding: 60px 50px;
-        border: 2px dashed #ffd8c4;
+        border: 2px dashed $gray-light;
 
         h2 {
             font-size: 2.5rem;
             font-weight: 500;
-            color: #4a3b30;
+            color: $text-dark;
             text-align: center;
             margin: 0 0 50px 0;
             position: relative;
@@ -147,30 +148,30 @@
     &__contact-item {
         text-align: center;
         padding: 30px 20px;
-        background: #ffffff;
+        background: $gray-bg;
         border-radius: 50px;
-        box-shadow: 0 10px 25px -10px rgba(249, 115, 22, 0.2);
+        box-shadow: 0 10px 25px -10px rgba($primary, 0.1);
         transition: all 0.3s ease;
-        border: 1px solid rgba(255, 218, 185, 0.5);
+        border: 1px solid rgba($primary, 0.1);
 
         &:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 30px -12px #fb923c;
-            border-color: #fed7aa;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba($primary, 0.2);
+            border-color: $primary-light;
         }
 
         .contact-info {
             h4 {
                 font-size: 1.4rem;
                 font-weight: 500;
-                color: #f97316;
+                color: $primary;
                 margin: 0 0 20px 0;
             }
 
             p {
                 font-size: 1.1rem;
                 line-height: 1.5;
-                color: #4a3b30;
+                color: $text-dark;
                 margin: 10px 0;
 
                 &:first-of-type {
@@ -181,28 +182,111 @@
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 320px) {
+    .souvenir-about {
+        padding: 25px 15px;
+        border-radius: 30px;
+
+        &__title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        &__intro {
+            padding: 20px 15px;
+            margin-bottom: 35px;
+            border-radius: 30px;
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+        }
+
+        &__cards {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        &__card {
+            border-radius: 35px;
+        }
+
+        &__card-image {
+            padding: 25px 25px 15px 25px;
+
+            img {
+                height: 150px;
+            }
+        }
+
+        &__card-content {
+            padding: 20px 20px 25px 20px;
+
+            h3 {
+                font-size: 1.4rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+        }
+
+        &__contacts {
+            padding: 25px 15px;
+            border-radius: 35px;
+
+            h2 {
+                font-size: 1.6rem;
+                margin-bottom: 25px;
+            }
+        }
+
+        &__contacts-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        &__contact-item {
+            padding: 18px 15px;
+            border-radius: 30px;
+
+            .contact-info {
+                h4 {
+                    font-size: 1.2rem;
+                    margin-bottom: 12px;
+                }
+
+                p {
+                    font-size: 0.95rem;
+                    margin: 8px 0;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
     .souvenir-about {
         padding: 30px 15px;
-        border-radius: 30px 30px 0 0;
+        border-radius: 40px;
 
         &__title {
             font-size: 2.2rem;
-            margin-bottom: 25px;
-
-            &::after {
-                font-size: 1.5rem;
-                margin-top: 10px;
-            }
+            margin-bottom: 30px;
         }
 
         &__intro {
             padding: 25px 20px;
             margin-bottom: 40px;
-            border-radius: 60px 60px 30px 30px;
+            border-radius: 35px;
 
             h2 {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
 
             p {
@@ -216,28 +300,8 @@
             margin-bottom: 50px;
         }
 
-        &__card {
-            border-radius: 40px 40px 30px 30px;
-        }
-
-        &__card-image {
-            padding: 25px 25px 15px 25px;
-
-            img {
-                height: 160px;
-            }
-        }
-
-        &__card-content {
-            padding: 20px 20px 30px 20px;
-
-            h3 {
-                font-size: 1.5rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
+        &__card-image img {
+            height: 160px;
         }
 
         &__contacts {
@@ -247,11 +311,6 @@
             h2 {
                 font-size: 1.8rem;
                 margin-bottom: 30px;
-
-                &::after {
-                    font-size: 1.5rem;
-                    margin-top: 10px;
-                }
             }
         }
 
@@ -259,87 +318,173 @@
             grid-template-columns: 1fr;
             gap: 20px;
         }
-
-        &__contact-item {
-            padding: 20px 15px;
-            border-radius: 30px;
-
-            .contact-info {
-                h4 {
-                    font-size: 1.2rem;
-                    margin-bottom: 15px;
-                }
-
-                p {
-                    font-size: 1rem;
-                }
-            }
-        }
     }
 }
 
-@media (min-width: 376px) and (max-width: 960px) {
+@media (min-width: 481px) and (max-width: 768px) {
     .souvenir-about {
         padding: 40px 20px;
+        border-radius: 50px;
 
         &__title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
         }
 
         &__intro {
-            padding: 30px;
+            padding: 30px 25px;
             margin-bottom: 50px;
 
             h2 {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
 
             p {
-                font-size: 1.1rem;
+                font-size: 1.05rem;
             }
         }
 
         &__cards {
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 25px;
+            margin-bottom: 60px;
         }
 
         &__card-image img {
-            height: 180px;
+            height: 170px;
         }
 
         &__card-content {
             padding: 25px 20px 30px 20px;
 
             h3 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
         }
 
         &__contacts {
-            padding: 40px 30px;
+            padding: 35px 25px;
         }
 
         &__contacts-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 25px;
         }
     }
 }
 
-@media (min-width: 961px) and (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 1024px) {
     .souvenir-about {
+        padding: 50px 25px;
+
+        &__title {
+            font-size: 3rem;
+        }
+
         &__cards {
             gap: 30px;
         }
 
         &__card-image img {
+            height: 190px;
+        }
+
+        &__card-content h3 {
+            font-size: 1.6rem;
+        }
+
+        &__contacts-grid {
+            gap: 30px;
+        }
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .souvenir-about {
+        &__cards {
+            gap: 35px;
+        }
+
+        &__card-image img {
             height: 200px;
+        }
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1920px) {
+    .souvenir-about {
+        max-width: 1920px;
+    }
+}
+
+@media (min-width: 1921px) {
+    .souvenir-about {
+        max-width: 2560px;
+        padding: 80px 50px;
+        border-radius: 80px;
+
+        &__title {
+            font-size: 4rem;
+            margin-bottom: 60px;
+        }
+
+        &__intro {
+            max-width: 1000px;
+            padding: 50px 60px;
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                font-size: 1.3rem;
+            }
+        }
+
+        &__cards {
+            gap: 50px;
+            margin-bottom: 120px;
+        }
+
+        &__card-image img {
+            height: 260px;
         }
 
         &__card-content {
+            padding: 35px 35px 45px 35px;
+
             h3 {
-                font-size: 1.7rem;
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+        }
+
+        &__contacts {
+            padding: 70px 60px;
+
+            h2 {
+                font-size: 3rem;
+                margin-bottom: 60px;
+            }
+        }
+
+        &__contacts-grid {
+            gap: 50px;
+        }
+
+        &__contact-item {
+            padding: 40px 25px;
+
+            .contact-info {
+                h4 {
+                    font-size: 1.6rem;
+                }
+
+                p {
+                    font-size: 1.2rem;
+                }
             }
         }
     }

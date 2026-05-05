@@ -1,16 +1,17 @@
+@import '../variables';
+
 .souvenir-header {
-    max-width: 2560px;
+    max-width: 1920px;
     margin: 20px auto 0;
     padding: 20px 40px;
-    background: #ffffff;
-    border-radius: 30px;
-    box-shadow: 0 15px 30px -15px rgba(249, 115, 22, 0.25);
-    border: 2px dashed #ffd8c4;
+    background: $white;
+    border-radius: 60px;
+    box-shadow: 0 15px 30px -15px rgba($primary, 0.15);
+    border: 2px dashed $gray-light;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    backdrop-filter: blur(10px);
 
     &__logo {
         position: relative;
@@ -26,29 +27,23 @@
 
     &__link {
         text-decoration: none;
-        font-family: 'Segoe UI', system-ui, sans-serif;
         font-size: 1.2rem;
         font-weight: 500;
         transition: all 0.3s ease;
         position: relative;
         padding: 8px 16px;
         border-radius: 40px;
-        border: 2px solid #ffd8c4;
+        border: 2px solid $gray-light;
 
         &:not(&--logo) {
-            color: #4a3b30;
+            color: $text-dark;
             background: transparent;
 
             &:hover {
-                color: #f97316;
-                border-color: #f97316;
+                color: $primary;
+                border-color: $primary;
                 transform: translateY(-2px);
-                box-shadow: 0 8px 20px -8px #f97316;
-
-                &::before {
-                    opacity: 1;
-                    left: -2px;
-                }
+                box-shadow: 0 8px 20px -8px rgba($primary, 0.3);
             }
 
             &:active {
@@ -59,54 +54,101 @@
         &--logo {
             font-size: 1.8rem;
             font-weight: 600;
-            color: #f97316;
-            text-shadow: 2px 2px 0 rgba(249, 115, 22, 0.1);
+            font-family: 'Good Vibes';
+            color: $primary;
             letter-spacing: 1px;
             padding: 5px 20px;
-            background: #ffffff;
+            background: $white;
             border-radius: 60px;
-            border: 2px solid #ffd8c4;
-            box-shadow: 0 5px 15px -8px #f97316;
+            border: 2px solid $gray-light;
+            box-shadow: 0 5px 15px -8px rgba($primary, 0.2);
             display: inline-block;
 
             &:hover {
                 transform: scale(1.02);
-                border-color: #f97316;
-                box-shadow: 0 8px 20px -8px #f97316;
+                border-color: $primary;
+                box-shadow: 0 8px 20px -8px rgba($primary, 0.3);
             }
         }
     }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 320px) {
     .souvenir-header {
-        padding: 15px 20px;
+        padding: 12px 15px;
         margin: 10px 10px 0;
-        border-radius: 40px 40px 20px 20px;
+        border-radius: 30px;
         flex-direction: column;
-        gap: 15px;
-
-        &::before {
-            font-size: 1.4rem;
-            bottom: -12px;
-            padding: 3px 12px;
-        }
+        gap: 12px;
 
         &__nav {
             width: 100%;
             justify-content: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         &__link {
-            font-size: 1rem;
+            font-size: 0.85rem;
+            padding: 5px 10px;
+
+            &--logo {
+                font-size: 1.2rem;
+                padding: 5px 12px;
+            }
+        }
+    }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+    .souvenir-header {
+        padding: 15px 20px;
+        margin: 10px 15px 0;
+        border-radius: 40px;
+        flex-direction: column;
+        gap: 15px;
+
+        &__nav {
+            width: 100%;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        &__link {
+            font-size: 0.95rem;
             padding: 6px 12px;
 
-            &:not(&--logo) {
-                &::before {
-                    display: none;
-                }
+            &--logo {
+                font-size: 1.3rem;
+                padding: 5px 15px;
             }
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .souvenir-header {
+        padding: 15px 25px;
+        margin: 15px 15px 0;
+        border-radius: 50px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        &__logo {
+            flex: 1;
+        }
+
+        &__nav {
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        &__link {
+            font-size: 0.95rem;
+            padding: 6px 12px;
 
             &--logo {
                 font-size: 1.4rem;
@@ -116,14 +158,15 @@
     }
 }
 
-@media (min-width: 376px) and (max-width: 960px) {
+@media (min-width: 769px) and (max-width: 1024px) {
     .souvenir-header {
-        padding: 15px 25px;
-        margin: 15px 15px 0;
-        border-radius: 60px 60px 25px 25px;
+        padding: 18px 30px;
+        margin: 15px 20px 0;
+        border-radius: 55px;
 
         &__link {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            padding: 8px 14px;
 
             &--logo {
                 font-size: 1.6rem;
@@ -133,26 +176,40 @@
     }
 }
 
-@media (min-width: 961px) and (max-width: 1200px) {
+@media (min-width: 1025px) and (max-width: 1280px) {
     .souvenir-header {
-        padding: 18px 30px;
-        margin: 15px 20px 0;
+        padding: 18px 35px;
+        margin: 18px 25px 0;
+    }
+}
 
-        &__link--logo {
-            font-size: 1.7rem;
+@media (min-width: 1281px) and (max-width: 1920px) {
+    .souvenir-header {
+        max-width: 1920px;
+        margin: 20px auto 0;
+        padding: 20px 40px;
+    }
+}
+
+@media (min-width: 1921px) {
+    .souvenir-header {
+        max-width: 2560px;
+        padding: 25px 50px;
+        margin: 25px auto 0;
+        border-radius: 80px;
+
+        &__link {
+            font-size: 1.4rem;
+            padding: 10px 20px;
+
+            &--logo {
+                font-size: 2rem;
+                padding: 8px 25px;
+            }
+        }
+
+        &__nav {
+            gap: 20px;
         }
     }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    50% {
-        transform: translateX(-50%) translateY(-3px);
-    }
-}
-
-.souvenir-header::before {
-    animation: float 3s ease-in-out infinite;
 }
