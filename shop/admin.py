@@ -4,11 +4,13 @@ from .models import Category, Product, CartItem, Cart, Order, OrderItem
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'out_price', 'sale_price', 'image', 'category')
-    search_fields = ('name', 'category')
+    list_filter = ['category']
+    search_fields = ['name']
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'id')
+    search_fields = ['name']
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):

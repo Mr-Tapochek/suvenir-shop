@@ -1,22 +1,34 @@
-from .models import Product, Cart, CartItem, Order, OrderItem
+from .models import Product, Category, Cart, CartItem, Order, OrderItem
 from rest_framework import viewsets, status
-from .serializers import ProductSerializers, CartSerializer, CartItemSerializer, OrderSerializer, CreateOrderSerializer
+from .serializers import ProductSerializers, CategorySerializer, CartSerializer, CartItemSerializer, OrderSerializer, CreateOrderSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from django.db import transaction
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 class SimplePagination(PageNumberPagination):
     page_size = 4
     page_size_query_param = 'page_size'
     max_page_size = 100
 
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['name']
+
 class ProductViewSet(viewsets.ModelViewSet):
-    pagination_class = SimplePagination
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
+    pagination_class = SimplePagination
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['category']
+    search_fields = ['name']
+    ordering_fields = ['name', 'sale_price', 'out_price', 'id']
 
 class CartItemViewSet(viewsets.ModelViewSet):
     serializer_class = CartItemSerializer

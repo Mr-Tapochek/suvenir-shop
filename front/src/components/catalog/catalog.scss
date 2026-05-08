@@ -1,14 +1,125 @@
-@import "../variables.scss";
+@import '../variables';
 
-.souvenir-catalog {
-    background-color: $gray-bg;
-    padding: 40px 30px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(260px, 1fr));
-    gap: 35px;
+.catalog-container {
     max-width: 1920px;
-    margin: 0 auto;
-    border-radius: 60px 60px 0 0;
+    margin: 30px auto 0;
+    padding: 0 30px 60px;
+}
+
+.filters-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding: 25px 30px;
+    background: $white;
+    border-radius: 50px;
+    border: 2px dashed $gray-light;
+    align-items: flex-end;
+}
+
+.search-box {
+    flex: 2;
+    min-width: 200px;
+    position: relative;
+
+    .search-input {
+        width: 100%;
+        padding: 14px 45px 14px 20px;
+        border: 2px solid $gray-light;
+        border-radius: 40px;
+        font-size: 1rem;
+        color: $text-dark;
+        background: $white;
+        transition: all 0.3s ease;
+        font-family: inherit;
+
+        &:focus {
+            outline: none;
+            border-color: $primary;
+            box-shadow: 0 0 0 3px rgba($primary, 0.1);
+        }
+
+        &::placeholder {
+            color: $text-light;
+            font-style: italic;
+        }
+    }
+
+    .clear-search {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: $text-light;
+        transition: color 0.2s ease;
+        padding: 5px;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}
+
+.category-filter,
+.sort-filter {
+    flex: 1;
+    min-width: 180px;
+
+    .category-select,
+    .sort-select {
+        width: 100%;
+        padding: 14px 20px;
+        border: 2px solid $gray-light;
+        border-radius: 40px;
+        font-size: 1rem;
+        color: $text-dark;
+        background: $white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+
+        &:focus {
+            outline: none;
+            border-color: $primary;
+            box-shadow: 0 0 0 3px rgba($primary, 0.1);
+        }
+
+        option {
+            background: $white;
+            color: $text-dark;
+        }
+    }
+}
+
+.clear-filters-btn {
+    padding: 14px 28px;
+    background: transparent;
+    border: 2px solid $gray-light;
+    border-radius: 40px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $text-medium;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    &:hover {
+        border-color: $primary;
+        color: $primary;
+        background: rgba($primary, 0.05);
+    }
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
 }
 
 .souvenir-card {
@@ -18,14 +129,13 @@
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
-    border: 1px solid rgba($primary, 0.15);
-    box-shadow: 0 10px 25px -10px rgba($primary, 0.2);
+    border: 1px solid rgba($primary, 0.1);
+    box-shadow: 0 10px 25px -10px rgba($primary, 0.15);
     overflow: hidden;
-    animation: fadeInUp 0.6s ease forwards;
 
     &:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 25px 35px -12px rgba($primary, 0.3);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 30px -12px rgba($primary, 0.25);
         border-color: $primary-light;
     }
 }
@@ -40,42 +150,46 @@
 
     img {
         width: 100%;
-        height: 240px;
+        height: 220px;
         object-fit: contain;
         transition: transform 0.4s ease;
 
         .souvenir-card:hover & {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
     }
 }
 
 .souvenir-card__info {
-    padding: 25px 25px 30px 25px;
+    padding: 20px 20px 25px 20px;
     background-color: $white;
     border-radius: 0 0 40px 40px;
     text-align: center;
 }
 
 .souvenir-card__title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: $text-dark;
-    margin: 0 0 15px 0;
+    margin: 0 0 12px 0;
     line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 48px;
 }
 
 .souvenir-card__prices {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
 .souvenir-card__old-price {
     color: $text-light;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 
     strike {
         text-decoration-color: $accent;
@@ -84,18 +198,49 @@
 }
 
 .souvenir-card__new-price {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: $primary;
     line-height: 1;
 }
 
-.souvenir-pagination {
+.no-results {
     grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: $white;
+    border-radius: 50px;
+    border: 2px dashed $gray-light;
+
+    p {
+        font-size: 1.3rem;
+        color: $text-medium;
+        margin-bottom: 25px;
+    }
+
+    .reset-btn {
+        padding: 12px 30px;
+        background: $primary;
+        color: $white;
+        border: none;
+        border-radius: 40px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: $primary-dark;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+.souvenir-pagination {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-top: 60px;
+    margin-top: 20px;
     padding-top: 25px;
     border-top: 2px dotted $gray-light;
 }
@@ -104,128 +249,135 @@
     background: $white;
     border: 2px solid $primary;
     color: $primary;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    padding: 14px 35px;
+    padding: 12px 32px;
     border-radius: 60px;
     cursor: pointer;
     transition: all 0.25s ease;
-    min-width: 150px;
+    min-width: 140px;
 
     &:hover:not(:disabled) {
         background: $primary;
         color: $white;
         border-color: $primary;
-        transform: scale(1.03);
+        transform: translateY(-2px);
     }
 
     &:disabled {
-        opacity: 0.3;
+        opacity: 0.4;
         cursor: not-allowed;
         border-color: $gray;
         color: $text-light;
     }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@for $i from 1 through 12 {
-    .souvenir-card:nth-child(#{$i}) {
-        animation-delay: #{$i * 0.1}s;
-    }
-}
-
 @media (max-width: 320px) {
-    .souvenir-catalog {
+    .catalog-container {
+        padding: 0 15px 40px;
+        margin: 20px auto 0;
+    }
+
+    .filters-section {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        border-radius: 35px;
+    }
+
+    .search-box {
+        width: 100%;
+        
+        .search-input {
+            padding: 12px 40px 12px 16px;
+            font-size: 0.9rem;
+        }
+    }
+
+    .category-filter,
+    .sort-filter {
+        width: 100%;
+        min-width: auto;
+
+        .category-select,
+        .sort-select {
+            padding: 12px 16px;
+            font-size: 0.9rem;
+        }
+    }
+
+    .clear-filters-btn {
+        width: 100%;
+        padding: 12px 20px;
+        text-align: center;
+    }
+
+    .products-grid {
         grid-template-columns: 1fr;
         gap: 20px;
-        padding: 15px;
-        border-radius: 24px 24px 0 0;
     }
 
     .souvenir-card {
-        border-radius: 24px;
-        flex-direction: row;
-        align-items: center;
-
-        &:hover {
-            transform: translateY(-4px);
-        }
+        border-radius: 30px;
     }
 
-    .souvenir-card__image-wrapper {
-        width: 120px;
-        padding: 15px;
-        border-bottom: none;
-        border-right: 2px dashed $gray-light;
-
-        img {
-            height: 100px;
-
-            .souvenir-card:hover & {
-                transform: scale(1.03);
-            }
-        }
-    }
-
-    .souvenir-card__info {
-        flex: 1;
-        padding: 15px;
-        text-align: left;
-        border-radius: 0 24px 24px 0;
+    .souvenir-card__image-wrapper img {
+        height: 180px;
     }
 
     .souvenir-card__title {
         font-size: 1rem;
-        margin-bottom: 8px;
-    }
-
-    .souvenir-card__prices {
-        justify-content: flex-start;
-        gap: 12px;
-    }
-
-    .souvenir-card__old-price {
-        font-size: 0.85rem;
+        min-height: 42px;
     }
 
     .souvenir-card__new-price {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
 
     .souvenir-pagination {
-        gap: 12px;
-        margin-top: 25px;
+        gap: 15px;
         flex-wrap: wrap;
     }
 
     .souvenir-pagination__button {
-        padding: 10px 16px;
-        font-size: 0.9rem;
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        min-width: 120px;
         flex: 1;
-        min-width: auto;
-
-        &:hover:not(:disabled) {
-            transform: scale(1.02);
-        }
     }
 }
 
 @media (min-width: 321px) and (max-width: 480px) {
-    .souvenir-catalog {
+    .catalog-container {
+        padding: 0 15px 40px;
+        margin: 20px auto 0;
+    }
+
+    .filters-section {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        border-radius: 35px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .category-filter,
+    .sort-filter {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .clear-filters-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .products-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
-        padding: 15px;
-        border-radius: 30px 30px 0 0;
     }
 
     .souvenir-card {
@@ -241,151 +393,174 @@
     }
 
     .souvenir-card__info {
-        padding: 15px 15px 18px 15px;
+        padding: 12px 12px 15px 12px;
     }
 
     .souvenir-card__title {
-        font-size: 0.95rem;
-        margin-bottom: 8px;
-    }
-
-    .souvenir-card__new-price {
-        font-size: 1.3rem;
+        font-size: 0.9rem;
+        min-height: 38px;
     }
 
     .souvenir-card__old-price {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+    }
+
+    .souvenir-card__new-price {
+        font-size: 1.2rem;
     }
 
     .souvenir-pagination {
         gap: 15px;
-        margin-top: 30px;
     }
 
     .souvenir-pagination__button {
         padding: 10px 20px;
-        font-size: 0.9rem;
-        min-width: 110px;
+        font-size: 0.95rem;
+        flex: 1;
     }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-    .souvenir-catalog {
+    .catalog-container {
+        padding: 0 20px 50px;
+    }
+
+    .filters-section {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .search-box {
+        min-width: 100%;
+    }
+
+    .category-filter,
+    .sort-filter {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .products-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-        padding: 20px;
-        border-radius: 40px 40px 0 0;
     }
 
-    .souvenir-card {
-        border-radius: 32px;
-    }
-
-    .souvenir-card__image-wrapper {
-        padding: 20px 20px 10px 20px;
-
-        img {
-            height: 180px;
-        }
-    }
-
-    .souvenir-card__info {
-        padding: 20px 20px 25px 20px;
+    .souvenir-card__image-wrapper img {
+        height: 170px;
     }
 
     .souvenir-card__title {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .souvenir-card__new-price {
-        font-size: 1.6rem;
-    }
-
-    .souvenir-pagination__button {
-        padding: 12px 28px;
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .souvenir-catalog {
+    .catalog-container {
+        padding: 0 25px 50px;
+    }
+
+    .filters-section {
+        gap: 18px;
+        padding: 25px;
+    }
+
+    .products-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 25px;
-        padding: 25px;
-        border-radius: 50px 50px 0 0;
+    }
+
+    .souvenir-card__image-wrapper img {
+        height: 190px;
+    }
+
+    .souvenir-card__title {
+        font-size: 1rem;
+    }
+
+    .souvenir-card__new-price {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .catalog-container {
+        padding: 0 25px 50px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
     }
 
     .souvenir-card__image-wrapper img {
         height: 200px;
     }
+}
 
-    .souvenir-card__title {
-        font-size: 1.15rem;
+@media (min-width: 1281px) and (max-width: 1920px) {
+    .catalog-container {
+        max-width: 1920px;
+        margin: 30px auto 0;
     }
 
-    .souvenir-card__new-price {
-        font-size: 1.7rem;
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
     }
 }
 
-@media (min-width: 1025px) and (max-width: 1280px) {
-    .souvenir-catalog {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        padding: 30px;
+@media (min-width: 1921px) {
+    .catalog-container {
+        max-width: 2560px;
+        margin: 40px auto 0;
+        padding: 0 40px 80px;
+    }
+
+    .filters-section {
+        padding: 35px 40px;
+        border-radius: 60px;
+    }
+
+    .search-box .search-input {
+        padding: 16px 50px 16px 24px;
+        font-size: 1.1rem;
+    }
+
+    .category-filter .category-select,
+    .sort-filter .sort-select {
+        padding: 16px 24px;
+        font-size: 1.1rem;
+    }
+
+    .clear-filters-btn {
+        padding: 16px 35px;
+        font-size: 1rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 35px;
     }
 
     .souvenir-card__image-wrapper img {
-        height: 220px;
+        height: 260px;
+    }
+
+    .souvenir-card__title {
+        font-size: 1.2rem;
     }
 
     .souvenir-card__new-price {
         font-size: 1.8rem;
     }
-}
-
-@media (min-width: 1281px) and (max-width: 1920px) {
-    .souvenir-catalog {
-        grid-template-columns: repeat(4, minmax(260px, 1fr));
-        gap: 35px;
-        padding: 40px 30px;
-    }
-
-    .souvenir-card__image-wrapper img {
-        height: 240px;
-    }
-
-    .souvenir-card__title {
-        font-size: 1.3rem;
-    }
-
-    .souvenir-card__new-price {
-        font-size: 2rem;
-    }
-}
-
-@media (min-width: 1921px) {
-    .souvenir-catalog {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 40px;
-        padding: 50px 40px;
-        max-width: 2560px;
-    }
-
-    .souvenir-card__image-wrapper img {
-        height: 280px;
-    }
-
-    .souvenir-card__title {
-        font-size: 1.4rem;
-    }
-
-    .souvenir-card__new-price {
-        font-size: 2.2rem;
-    }
 
     .souvenir-pagination__button {
         padding: 16px 45px;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }
