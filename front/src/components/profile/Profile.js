@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import "./profile.scss";
 
 const Profile = () => {
+    const navigate = useNavigate();
     const [profile, setProfile] = useState({ bio: '', avatar_url: '', banner_url: '', nickname: '' });
     const [editing, setEditing] = useState(false);
     const [newAvatar, setNewAvatar] = useState(null);
@@ -34,13 +36,24 @@ const Profile = () => {
                 const response = await axios.get('http://127.0.0.1:8000/orders/', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
-                setOrders(response.data);
+                
+                const ordersData = Array.isArray(response.data) 
+                    ? response.data 
+                    : response.data.results || response.data.orders || [];
+                
+                setOrders(ordersData);
             } catch (error) {
                 console.error('Ошибка загрузки заказов:', error);
             }
         };
         fetchOrders();
     }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        navigate('/');
+    };
 
     const handleAvatarChange = e => {
         if (e.target.files[0]) {
@@ -156,7 +169,10 @@ const Profile = () => {
                         }} className="cancel-btn souvenir-profile__cancel-btn">Отмена</button>
                     </div>
                 ) : (
-                    <button onClick={() => setEditing(true)} className="edit-btn souvenir-profile__edit-profile-btn">Изменить профиль</button>
+                    <div>
+                        <button onClick={() => setEditing(true)} className="edit-btn souvenir-profile__edit-profile-btn">Изменить профиль</button>
+                        <button onClick={handleLogout} className="edit-btn souvenir-profile__logout">Выйти</button>
+                    </div>
                 )}
             </div>
 

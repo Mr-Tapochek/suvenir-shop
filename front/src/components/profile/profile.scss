@@ -128,6 +128,7 @@
     }
 
     &__nickname {
+        font-family: 'Segoe UI', serif;
         font-size: 2.2rem;
         font-weight: 400;
         color: $text-dark;
@@ -194,15 +195,17 @@
     &__controls {
         display: flex;
         justify-content: center;
+        gap: 20px;
         margin-bottom: 40px;
+        flex-wrap: wrap;
     }
 
     &__edit-profile-btn {
         background: $primary;
         color: $white;
         border: none;
-        padding: 16px 48px;
-        font-size: 1.2rem;
+        padding: 16px 32px;
+        font-size: 1.1rem;
         font-weight: 600;
         border-radius: 60px;
         cursor: pointer;
@@ -212,13 +215,37 @@
 
         &:hover {
             background: $primary-dark;
-            transform: translateY(-3px);
-            box-shadow: 0 25px 35px -15px rgba($primary, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px -12px rgba($primary, 0.5);
             border-color: $white;
         }
 
         &:active {
-            transform: translateY(-1px);
+            transform: translateY(0px);
+        }
+    }
+
+    &__logout {
+        background: transparent;
+        color: $accent;
+        border: 2px solid $accent;
+        padding: 16px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 60px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: $white;
+
+        &:hover {
+            background: $accent;
+            color: $white;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -12px rgba(220, 38, 38, 0.4);
+        }
+
+        &:active {
+            transform: translateY(0px);
         }
     }
 
@@ -429,6 +456,52 @@
     }
 }
 
+// Адаптив для кнопок на мобильных
+@media (max-width: 320px) {
+    .souvenir-profile {
+        &__controls {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        &__edit-profile-btn,
+        &__logout {
+            width: 100%;
+            padding: 12px 24px;
+            font-size: 1rem;
+        }
+    }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+    .souvenir-profile {
+        &__controls {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        &__edit-profile-btn,
+        &__logout {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .souvenir-profile {
+        &__controls {
+            gap: 15px;
+        }
+
+        &__edit-profile-btn,
+        &__logout {
+            padding: 14px 28px;
+            font-size: 1rem;
+        }
+    }
+}
+
+// Остальные медиа-запросы остаются без изменений
 @media (max-width: 320px) {
     .souvenir-profile {
         padding: 0 15px;
@@ -484,24 +557,6 @@
             font-size: 0.9rem;
         }
 
-        &__edit-profile-btn {
-            padding: 12px 30px;
-            font-size: 1rem;
-            width: 100%;
-        }
-
-        &__edit-controls {
-            flex-direction: column;
-            width: 100%;
-        }
-
-        &__apply-btn,
-        &__cancel-btn {
-            width: 100%;
-            padding: 12px 25px;
-            font-size: 1rem;
-        }
-
         &__orders {
             padding: 20px 15px;
             border-radius: 35px;
@@ -543,22 +598,6 @@
 
         &__nickname {
             font-size: 1.8rem;
-        }
-
-        &__edit-profile-btn {
-            padding: 14px 35px;
-            font-size: 1.1rem;
-            width: 100%;
-        }
-
-        &__edit-controls {
-            flex-direction: column;
-            width: 100%;
-        }
-
-        &__apply-btn,
-        &__cancel-btn {
-            width: 100%;
         }
 
         &__orders {
@@ -660,9 +699,10 @@
             font-size: 1.2rem;
         }
 
-        &__edit-profile-btn {
-            padding: 20px 65px;
-            font-size: 1.4rem;
+        &__edit-profile-btn,
+        &__logout {
+            padding: 18px 40px;
+            font-size: 1.2rem;
         }
 
         &__orders {
