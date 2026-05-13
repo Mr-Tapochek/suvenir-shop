@@ -33,6 +33,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 class CartItemViewSet(viewsets.ModelViewSet):
     serializer_class = CartItemSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = None
 
     def get_queryset(self):
         cart, _ = Cart.objects.get_or_create(user=self.request.user)
@@ -52,6 +53,7 @@ class CartItemViewSet(viewsets.ModelViewSet):
 class CartViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CartSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = None
 
     def get_queryset(self): return Cart.objects.filter(user=self.request.user)
 
