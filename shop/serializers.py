@@ -45,8 +45,7 @@ class OrderSerializer(serializers.ModelSerializer):
     payment_method_display = serializers.CharField(source='get_payment_method_display', read_only=True)
     class Meta:
         model = Order
-        fields = ['id', 'address', 'delivery_time', 'payment_method', 'payment_method_display', 
-                  'card_number', 'total_price', 'status', 'status_display', 'items', 'created_at', 'updated_at']
+        fields = ['id', 'address', 'delivery_time', 'payment_method', 'payment_method_display', 'total_price', 'status', 'status_display', 'items', 'created_at', 'updated_at']
         read_only_fields = ['id', 'total_price', 'status', 'created_at', 'updated_at']
 
 class CreateOrderSerializer(serializers.Serializer):
@@ -54,15 +53,6 @@ class CreateOrderSerializer(serializers.Serializer):
     delivery_date = serializers.DateField(required=True)
     delivery_time = serializers.CharField(required=True)
     payment_method = serializers.ChoiceField(choices=['cash', 'card'], required=True)
-    card_number = serializers.CharField(required=False, allow_blank=True, max_length=19)
-
-    def validate_card_number(self, value):
-        payment_method = self.initial_data.get('payment_method')
-        if payment_method == 'card' and not value:
-            raise serializers.ValidationError("Номер карты обязателен при оплате картой")
-        if value and not value.replace(' ', '').isdigit():
-            raise serializers.ValidationError("Номер карты должен содержать только цифры")
-        return value
     
     def validate_delivery_date(self, value):
         from datetime import date

@@ -88,7 +88,6 @@ class OrderViewSet(viewsets.ModelViewSet):
             delivery_date=serializer.validated_data['delivery_date'],
             delivery_time=serializer.validated_data['delivery_time'],
             payment_method=serializer.validated_data['payment_method'],
-            card_number=serializer.validated_data.get('card_number', ''),
             total_price=cart.total_price
         )
         for cart_item in cart.items.all():

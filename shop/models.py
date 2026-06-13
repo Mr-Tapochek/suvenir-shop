@@ -72,14 +72,13 @@ class Order(models.Model):
     ]
     PAYMENT_CHOICES = [
         ('cash', 'Наличными курьеру'),
-        ('card', 'Банковской картой'),
+        ('card', 'Банковской картой курьеру'),
     ]
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='orders', verbose_name='Пользователь')
     address = models.TextField(verbose_name='Адрес доставки')
     delivery_date = models.DateField(null=True, verbose_name='Дата доставки')
     delivery_time = models.CharField(max_length=100, verbose_name='Время доставки')
     payment_method = models.CharField(max_length=10, choices=PAYMENT_CHOICES, verbose_name='Способ оплаты')
-    card_number = models.CharField(max_length=19, blank=True, null=True, verbose_name='Номер карты')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Общая сумма')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name='Статус заказа')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')

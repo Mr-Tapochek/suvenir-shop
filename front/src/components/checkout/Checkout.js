@@ -12,7 +12,6 @@ const Checkout = () => {
         delivery_date: '',
         delivery_time: '',
         payment_method: 'cash',
-        card_number: ''
     });
     const [errors, setErrors] = useState({});
 
@@ -49,13 +48,6 @@ const Checkout = () => {
         }
     };
 
-    const handleCardChange = (e) => {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 16) value = value.slice(0, 16);
-        const formatted = value.replace(/(\d{4})/g, '$1 ').trim();
-        setFormData(prev => ({ ...prev, card_number: formatted }));
-    };
-
     const validateForm = () => {
         const newErrors = {};
         if (!formData.address.trim()) {
@@ -66,14 +58,6 @@ const Checkout = () => {
         }
         if (!formData.delivery_time) {
             newErrors.delivery_time = 'Выберите время доставки';
-        }
-        if (formData.payment_method === 'card') {
-            const cardDigits = formData.card_number.replace(/\s/g, '');
-            if (!cardDigits) {
-                newErrors.card_number = 'Введите номер карты';
-            } else if (cardDigits.length < 16) {
-                newErrors.card_number = 'Введите 16 цифр номера карты';
-            }
         }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -94,7 +78,6 @@ const Checkout = () => {
             delivery_date: formData.delivery_date,
             delivery_time: formData.delivery_time,
             payment_method: formData.payment_method,
-            card_number: formData.payment_method === 'card' ? formData.card_number.replace(/\s/g, '') : ''
         };
         
         try {
@@ -202,26 +185,10 @@ const Checkout = () => {
                                     checked={formData.payment_method === 'card'}
                                     onChange={handleChange}
                                 />
-                                <span>Банковской картой</span>
+                                <span>Банковской картой курьеру</span>
                             </label>
                         </div>
                     </div>
-
-                    {formData.payment_method === 'card' && (
-                        <div className="souvenir-checkout__field">
-                            <label>Номер карты *</label>
-                            <input 
-                                type="text"
-                                name="card_number"
-                                value={formData.card_number}
-                                onChange={handleCardChange}
-                                placeholder="1234 5678 9012 3456"
-                                maxLength="19"
-                                className={errors.card_number ? 'error' : ''}
-                            />
-                            {errors.card_number && <span className="error-message">{errors.card_number}</span>}
-                        </div>
-                    )}
 
                     <div className="souvenir-checkout__actions">
                         <button 
